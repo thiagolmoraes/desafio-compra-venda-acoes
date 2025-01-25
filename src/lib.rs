@@ -1,5 +1,14 @@
-pub mod routes;
-pub mod handlers;
+use diesel::r2d2::{self, ConnectionManager};
+use diesel::SqliteConnection;
 
-pub use routes::configure;
-pub use handlers::handler_hello;
+pub type DbPool = r2d2::Pool<ConnectionManager<SqliteConnection>>;
+
+
+pub mod handlers;
+pub mod utils;
+pub mod routes;
+pub mod schema;
+pub mod models;
+pub mod services;
+
+pub use routes::init_routes;
