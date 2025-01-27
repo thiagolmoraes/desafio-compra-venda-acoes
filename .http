@@ -3,11 +3,14 @@ GET http://127.0.0.1:8080/users
 
 
 ### Create User
-POST http://127.0.0.1:8080/users
+POST http://127.0.0.1:8080/v1/users
 Content-Type: application/json
 
 {
-    "name": "test",
-    "email": "test@test.com",
-    "password": "test"
+    "name": "Thiago",
+    "email": "aa@gmail.com",
+    "password": "123_Mudar@"
 }
+
+### Stock 
+GET http://127.0.0.1:8080/v1/stocks

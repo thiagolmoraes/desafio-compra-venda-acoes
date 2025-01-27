@@ -8,5 +8,6 @@ diesel::table! {
         password -> Text,
         created_at -> Nullable<Timestamp>,
         updated_at -> Nullable<Timestamp>,
+        is_actived -> Nullable<Bool>,
     }
 }

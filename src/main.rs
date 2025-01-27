@@ -5,7 +5,7 @@ use anyhow::{Result, Context};
 use dotenvy::dotenv;
 use std::env;
 use env_logger::Env;
-use compra_venda_acoes::{init_routes, DbPool};
+use compra_venda_acoes::{init_routes, DbPool, SayHi};
 
 
 pub fn establish_connection() -> DbPool {
@@ -26,10 +26,13 @@ async fn main() -> Result<()> {
 
     let pool = establish_connection();
 
+    let whitelist_routes = vec!["/v1/stocks".to_string()];
+
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(pool.clone()))
             .wrap(Logger::new("%a %r %s"))
+            .wrap(SayHi)
             .configure(init_routes)
     })
     .bind("0.0.0.0:8080")
