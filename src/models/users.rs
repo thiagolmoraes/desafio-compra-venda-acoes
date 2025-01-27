@@ -6,7 +6,6 @@ use crate::schema::users::{self, dsl::*};
 
 
 #[derive(Queryable, Selectable, Serialize, Deserialize)]
-#[diesel(table_name = users)]
 #[diesel(check_for_backend(diesel::sqlite::Sqlite))]
 pub struct User {
     // pub id: Option<i32>,

@@ -1,0 +1,10 @@
+-- Your SQL goes here
+CREATE TABLE bank_accounts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    account_number INTEGER NOT NULL UNIQUE,
+    agency INTEGER NOT NULL,
+    bank_name TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

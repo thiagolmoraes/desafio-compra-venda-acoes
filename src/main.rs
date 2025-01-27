@@ -26,8 +26,6 @@ async fn main() -> Result<()> {
 
     let pool = establish_connection();
 
-    let whitelist_routes = vec!["/v1/stocks".to_string()];
-
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(pool.clone()))
