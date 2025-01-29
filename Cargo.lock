@@ -511,6 +511,7 @@ dependencies = [
  "thiserror",
  "tracing",
  "tracing-actix-web",
+ "uuid",
  "zxcvbn",
 ]
 
