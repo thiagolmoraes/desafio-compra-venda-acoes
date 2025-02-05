@@ -20,7 +20,6 @@ pub async fn create_user(pool: &DbPool, new_user: UserDTO) -> Result<TokenMailWi
         return Err(AppError::EmailNotValid);
     }
 
-    println!("chegou aqui");
     //Valid Complexity Password
     let password_validation = Validation {
         field: new_user.password.clone()

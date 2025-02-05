@@ -12,4 +12,4 @@ pub mod models;
 pub mod services;
 
 pub use routes::init_routes;
-pub use middlewares::SayHi;
+pub use middlewares::Authentication;

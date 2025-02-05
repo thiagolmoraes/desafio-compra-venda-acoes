@@ -1,5 +1,5 @@
 pub mod jwt_token;
-pub use jwt_token::Keys;
+pub use jwt_token::UserClaim;
 
 
 pub mod custom_error;

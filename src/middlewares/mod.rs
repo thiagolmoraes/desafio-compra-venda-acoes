@@ -1,2 +1,2 @@
 pub mod auth_middleware;
-pub use  auth_middleware::SayHi;
+pub use  auth_middleware::Authentication;

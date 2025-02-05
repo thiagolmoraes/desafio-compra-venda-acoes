@@ -5,7 +5,7 @@ use anyhow::{Result, Context};
 use dotenvy::dotenv;
 use std::env;
 use env_logger::Env;
-use compra_venda_acoes::{init_routes, DbPool, SayHi};
+use compra_venda_acoes::{init_routes, Authentication, DbPool};
 
 
 pub fn establish_connection() -> DbPool {
@@ -30,7 +30,7 @@ async fn main() -> Result<()> {
         App::new()
             .app_data(web::Data::new(pool.clone()))
             .wrap(Logger::new("%a %r %s"))
-            .wrap(SayHi)
+            .wrap(Authentication)
             .configure(init_routes)
     })
     .bind("0.0.0.0:8080")

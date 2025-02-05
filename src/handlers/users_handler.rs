@@ -1,6 +1,6 @@
 use actix_web::{HttpResponse, routes, web};
 use serde_json::json;
-use crate::{DbPool, models::{UserDTO, ActivationJson, LoginJson}, services::{create_user, check_token, login_user}};
+use crate::{DbPool, models::{UserDTO, ActivationJson, LoginJson}, services::{create_user, check_token, login_user}, utils::UserClaim};
 use crate::utils::AppError;
 
 #[routes]
@@ -75,7 +75,18 @@ pub async fn login_user_handler(
     
     match login_user(&pool, login_json.into_inner()).await {
         Ok(user) => {
-            HttpResponse::Ok().json(user)
+            match UserClaim::create_token(user.email.to_string()) {
+                Ok(token) => {
+                    HttpResponse::Ok().json(json!({
+                        "message": "User logged in successfully",
+                        "token": token
+                    }))
+                },
+                Err(e) => {
+                    let response = json!({ "message": e.to_string() });
+                    HttpResponse::InternalServerError().json(response)
+                }
+            }
         },
         Err(e) => {
             let response = json!({ "message": e.to_string() });
